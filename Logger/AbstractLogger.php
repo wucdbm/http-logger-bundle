@@ -102,6 +102,12 @@ abstract class AbstractLogger {
      * @param int $messageType
      */
     public function logRequest(RequestLog $log, RequestInterface $request, int $messageType) {
+        $this->_logRequest($log, $request, $messageType);
+
+        $this->save($log);
+    }
+
+    protected function _logRequest(RequestLog $log, RequestInterface $request, int $messageType) {
         $body = $request->getBody();
         $body->rewind();
         $content = $body->getContents();
@@ -117,8 +123,6 @@ abstract class AbstractLogger {
 
         $log->setUrl($request->getUri());
         $log->setMethod($request->getMethod());
-
-        $this->save($log);
     }
 
     /**
@@ -127,6 +131,12 @@ abstract class AbstractLogger {
      * @param int $messageType
      */
     public function logResponse(RequestLog $log, ResponseInterface $response, int $messageType) {
+        $this->_logResponse($log, $response, $messageType);
+
+        $this->save($log);
+    }
+
+    public function _logResponse(RequestLog $log, ResponseInterface $response, int $messageType) {
         $body = $response->getBody();
         $body->rewind();
         $content = $body->getContents();
@@ -150,8 +160,6 @@ abstract class AbstractLogger {
         $log->setResponse($message);
 
         $log->setStatusCode($response->getStatusCode());
-
-        $this->save($log);
     }
 
     /**
@@ -168,6 +176,12 @@ abstract class AbstractLogger {
     }
 
     public function logException(RequestLog $log, \Throwable $exception, $extraData = null) {
+        $this->_logException($log, $exception, $extraData);
+
+        $this->save($log);
+    }
+
+    public function _logException(RequestLog $log, \Throwable $exception, $extraData = null) {
         $ex = $this->createLogException();
         $ex->setLog($log);
         $ex->setStackTraceString($exception->getTraceAsString());
@@ -188,8 +202,6 @@ abstract class AbstractLogger {
         }
 
         $log->setException($ex);
-
-        $this->save($log);
     }
 
     protected function getExceptionJson(\Throwable $e) {
