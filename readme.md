@@ -166,7 +166,7 @@ class YourRequestLogLogger extends AbstractLogger {
      */
     public function log(string $msg, SomeOtherEntity $entity) {
         /** @var RequestLog $log */
-        $log = parent::log($msg);
+        $log = parent::_log($msg);
         
         $log->setSomeOtherEntity($entity);
 
