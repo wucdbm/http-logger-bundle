@@ -9,6 +9,33 @@ This is especially useful when working with terribly written APIs you have no co
 At this point, the bundle has no presentation of the data it collects.
 You should implement that on your own.
 
+# Example Usage
+
+```
+$manager = $this->container->get('some.manager');
+$log = $manager->log('This is some message with any information that would eventually help you once you need to debug something');
+
+try {
+    $client = new \GuzzleHttp\Client();
+    $request = new Request('GET', 'http://some-website.com/');
+
+    $manager->logRequest($log, $request, RequestLogMessageType::ID_TEXT_PLAIN);
+
+    $response = $client->send($request);
+
+    $manager->logResponse($log, $response, RequestLogMessageType::ID_HTML);
+
+    $ex = new \Exception('First Exception');
+
+    throw new \Exception('Second Exception', 0, $ex);
+} catch (\Throwable $e) {
+    $manager->logException($log, $e);
+}
+```
+
+There is also a method called "logGuzzleException". It is a shorthand for logging the response, if any, upon HTTP 500 and such.
+Keep in mind that this is a very basic example. The real power of this bundle comes when you have to execute tons of requests asynchronously, without human overview, via curl, and where it is painfully hard to find which one exactly went broke, without proper logging.
+
 # Installation & Setup
 
 ## config.yml
