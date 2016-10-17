@@ -102,7 +102,7 @@ class BookingLogger extends AbstractLogger {
      * @return YourRequestLog
      */
     public function log(string $msg, SomeOtherEntity $entity) {
-        /** @var RequestLog $log */
+        /** @var YourRequestLog $log */
         $log = parent::log($msg);
         
         $log->setSomeOtherEntity($entity);
