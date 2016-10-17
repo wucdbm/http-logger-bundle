@@ -87,14 +87,24 @@ abstract class AbstractLogger {
      */
     protected abstract function createLogMessageType();
 
-    public function log(string $message) {
-        $log = $this->_log($message);
+    /**
+     * You should implement your own log method, if you require any additional parameters
+     * If not, copying the below in your implementation is OK
+     * Adapt anything else to your particular needs
+     *
+     * public function log(string $message) {
+     *      $log = $this->_log($message);
+     *
+     *      $this->save($log);
+     *
+     *      return $log;
+     * }
+     */
 
-        $this->save($log);
-
-        return $log;
-    }
-
+    /**
+     * @param string $message
+     * @return RequestLog
+     */
     protected function _log(string $message) {
         $log = $this->createLog();
         $log->setMessage($message);
