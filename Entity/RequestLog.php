@@ -37,9 +37,10 @@ class RequestLog {
     protected $exception;
 
     /**
+     * No return type here, it may have not been set
      * @return int
      */
-    public function getId(): int {
+    public function getId() {
         return $this->id;
     }
 
@@ -51,9 +52,10 @@ class RequestLog {
     }
 
     /**
+     * No return type here, it may have not been set
      * @return int
      */
-    public function getStatusCode(): int {
+    public function getStatusCode() {
         return $this->statusCode;
     }
 
@@ -65,9 +67,10 @@ class RequestLog {
     }
 
     /**
+     * No return type here, it may have not been set
      * @return string
      */
-    public function getUrl(): string {
+    public function getUrl() {
         return $this->url;
     }
 
@@ -79,9 +82,10 @@ class RequestLog {
     }
 
     /**
+     * No return type here, it may have not been set
      * @return string
      */
-    public function getMethod(): string {
+    public function getMethod() {
         return $this->method;
     }
 
@@ -121,9 +125,10 @@ class RequestLog {
     }
 
     /**
+     * No return type here, it may have not been set
      * @return string
      */
-    public function getDebug(): string {
+    public function getDebug() {
         return $this->debug;
     }
 
