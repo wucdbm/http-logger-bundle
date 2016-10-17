@@ -33,7 +33,7 @@ try {
 }
 ```
 
-# Advanced Usage (log
+# Advanced Usage
 
 ```
 $log = $this->log('SomeClass::someMethod()');
