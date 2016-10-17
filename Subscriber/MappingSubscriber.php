@@ -225,9 +225,33 @@ class MappingSubscriber implements EventSubscriber {
         }
     }
 
+    protected function getRequestLogTable($config) {
+        return $this->getTableName($config, 'request_logs');
+    }
+
+    protected function getRequestLogMessageTable($config) {
+        return $this->getTableName($config, 'request_logs_messages');
+    }
+
+    protected function getRequestLogMessageTypeTable($config) {
+        return $this->getTableName($config, 'request_logs_messages_types');
+    }
+
+    protected function getRequestLogExceptionTable($config) {
+        return $this->getTableName($config, 'request_logs_exceptions');
+    }
+
+    protected function getTableName($config, $name) {
+        return [
+            'name' => sprintf('%s%s', $config['table_prefix'], $name)
+        ];
+    }
+
     protected function mapRequestLog(ClassMetadata $metadata, EntityManager $em) {
         $reflection = $metadata->getReflectionClass();
         $config = $this->getConfigForClass($reflection->getName());
+
+        $metadata->setPrimaryTable($this->getRequestLogTable($config));
 
 //        /**
 //         * @ORM\Id
@@ -359,6 +383,8 @@ class MappingSubscriber implements EventSubscriber {
         $reflection = $metadata->getReflectionClass();
         $config = $this->getConfigForClass($reflection->getName());
 
+        $metadata->setPrimaryTable($this->getRequestLogMessageTable($config));
+
 //        /**
 //         * @ORM\Id
 //         * @ORM\Column(name="id", type="integer", options={"unsigned"=true})
@@ -439,6 +465,8 @@ class MappingSubscriber implements EventSubscriber {
         $reflection = $metadata->getReflectionClass();
         $config = $this->getConfigForClass($reflection->getName());
 
+        $metadata->setPrimaryTable($this->getRequestLogMessageTypeTable($config));
+
 //        /**
 //         * @ORM\Id
 //         * @ORM\Column(name="id", type="integer", options={"unsigned"=true})
@@ -477,6 +505,8 @@ class MappingSubscriber implements EventSubscriber {
     protected function mapRequestLogException(ClassMetadata $metadata, EntityManager $em) {
         $reflection = $metadata->getReflectionClass();
         $config = $this->getConfigForClass($reflection->getName());
+
+        $metadata->setPrimaryTable($this->getRequestLogExceptionTable($config));
 
 //        /**
 //         * @ORM\Id

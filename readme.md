@@ -17,6 +17,7 @@ You should implement that on your own.
 wucdbm_http_logger:
     configs:
         bookings:
+            table_prefix: some_logs__
             log_class: Some\Name\Space\RequestLog
             log_message_class: Some\Name\Space\RequestLogMessage
             log_message_type_class: Some\Name\Space\RequestLogMessageType
@@ -42,7 +43,6 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="SomeRepositoryClass")
- * @ORM\Table(name="some_table")
  */
 class YourRequestLog extends \Wucdbm\Bundle\WucdbmHttpLoggerBundle\Entity\RequestLog {
 
@@ -58,7 +58,7 @@ class YourRequestLog extends \Wucdbm\Bundle\WucdbmHttpLoggerBundle\Entity\Reques
 Finally, before you can use the logger, you must create a Logger that extends `\Wucdbm\Bundle\WucdbmHttpLoggerBundle\Logger\AbstractLogger`
 You must implement the factory methods for creating each of your entities. 
 This may be automated in future versions, so I would advise against creating constructors on these, unless I get enough time and get a proper implementation using an interface and a base factory that just works out of the box.
-Furthermore, you should set the 4 repositories. Usage of setter or constructor injection is up to your needs.
+
 
 ```
 <?php
@@ -102,7 +102,7 @@ class BookingLogger extends AbstractLogger {
      * @return YourRequestLog
      */
     public function log(string $msg, SomeOtherEntity $entity) {
-        /** @var YourRequestLog $log */
+        /** @var RequestLog $log */
         $log = parent::log($msg);
         
         $log->setSomeOtherEntity($entity);
