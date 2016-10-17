@@ -58,7 +58,7 @@ class YourRequestLog extends \Wucdbm\Bundle\WucdbmHttpLoggerBundle\Entity\Reques
 Finally, before you can use the logger, you must create a Logger that extends `\Wucdbm\Bundle\WucdbmHttpLoggerBundle\Logger\AbstractLogger`
 You must implement the factory methods for creating each of your entities. 
 This may be automated in future versions, so I would advise against creating constructors on these, unless I get enough time and get a proper implementation using an interface and a base factory that just works out of the box.
-
+Furthermore, you should set the 4 repositories. Usage of setter or constructor injection is up to your needs.
 
 ```
 <?php
