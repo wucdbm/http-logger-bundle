@@ -136,7 +136,7 @@ class RequestLogException {
     /**
      * @return string
      */
-    public function getExtraData(): string {
+    public function getExtraData() {
         return $this->extraData;
     }
 
