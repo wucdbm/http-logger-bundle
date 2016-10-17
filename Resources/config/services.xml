@@ -1,0 +1,16 @@
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="wucdbm_http_logger.doctrine_mapping_subscriber.class">Wucdbm\Bundle\WucdbmHttpLoggerBundle\Subscriber\MappingSubscriber</parameter>
+    </parameters>
+
+    <services>
+        <service id="wucdbm_http_logger.doctrine_mapping_subscriber" class="%wucdbm_http_logger.doctrine_mapping_subscriber.class%">
+            <argument>%wucdbm_http_logger.configs%</argument>
+            <tag name="doctrine.event_subscriber"/>
+        </service>
+    </services>
+
+</container>

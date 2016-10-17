@@ -1,0 +1,21 @@
+{
+    "name": "wucdbm/http-logger-bundle",
+    "type": "symfony-bundle",
+    "description": "A Symfony 3.0 Bundle for hosting HTTP Request/Responses, as well as exceptions that occur during the handling of those",
+    "keywords": ["wucdbm", "http", "http logger", "http logger bundle", "http request response log", "http log bundle", "symfony http log"],
+    "authors": [
+        {
+            "name": "Martin Kirilov",
+            "email": "wucdbm@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "~7.0",
+        "symfony/symfony": "~2.8|~3.0"
+    },
+    "autoload": {
+        "psr-4": { "Wucdbm\\Bundle\\WucdbmHttpLoggerBundle\\": "" }
+    },
+    "license": "GPL-3.0"
+}
