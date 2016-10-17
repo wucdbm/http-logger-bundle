@@ -318,7 +318,7 @@ class MappingSubscriber implements EventSubscriber {
         }
 
 //        /**
-//         * @ORM\OneToOne(targetEntity="App\Entity\Booking\BookingLogMessage", inversedBy="requestTo", orphanRemoval=true)
+//         * @ORM\OneToOne(targetEntity="Wucdbm\Bundle\WucdbmHttpLoggerBundle\Entity\BookingLogMessage", inversedBy="requestTo", orphanRemoval=true)
 //         * @ORM\JoinColumn(name="request_id", referencedColumnName="id", onDelete="CASCADE", nullable=true)
 //         */
 //        protected $request;
@@ -338,7 +338,7 @@ class MappingSubscriber implements EventSubscriber {
         }
 
 //        /**
-//         * @ORM\OneToOne(targetEntity="App\Entity\Booking\BookingLogMessage", inversedBy="responseTo", orphanRemoval=true)
+//         * @ORM\OneToOne(targetEntity="Wucdbm\Bundle\WucdbmHttpLoggerBundle\Entity\BookingLogMessage", inversedBy="responseTo", orphanRemoval=true)
 //         * @ORM\JoinColumn(name="response_id", referencedColumnName="id", onDelete="CASCADE", nullable=true)
 //         */
 //        protected $response;
