@@ -88,10 +88,16 @@ abstract class AbstractLogger {
     protected abstract function createLogMessageType();
 
     public function log(string $message) {
-        $log = $this->createLog();
-        $log->setMessage($message);
+        $log = $this->_log($message);
 
         $this->save($log);
+
+        return $log;
+    }
+
+    protected function _log(string $message) {
+        $log = $this->createLog();
+        $log->setMessage($message);
 
         return $log;
     }
