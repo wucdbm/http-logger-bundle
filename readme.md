@@ -9,7 +9,7 @@ This is especially useful when working with terribly written APIs you have no co
 At this point, the bundle has no presentation of the data it collects.
 You should implement that on your own.
 
-# Example Usage
+# Basic Usage
 
 ```
 $manager = $this->container->get('some.manager');
@@ -30,6 +30,42 @@ try {
     throw new \Exception('Second Exception', 0, $ex);
 } catch (\Throwable $e) {
     $manager->logException($log, $e);
+}
+```
+
+# Advanced Usage (log
+
+```
+$log = $this->log('SomeClass::someMethod()');
+
+try {
+    $request = new Request('POST', 'https://someUri.com/API', [
+        RequestOptions::BODY => 'SomeBody'
+    ]);
+
+    $this->logRequest($log, $request, RequestLogMessageType::ID_XML);
+
+    $this->pool->sendAsync($request, function (ResponseInterface $response) use ($log) {
+        try {
+            $rawResponse = $response->getBody()->getContents();
+
+            $this->logResponse($log, $response, RequestLogMessageType::ID_XML);
+
+            $crawler = new Crawler($rawResponse);
+
+            try {
+                // do some Crawler work
+            } catch (\InvalidArgumentException $ex) {
+                $this->exception($log, $ex, $crawler->html());
+            }
+        } catch (\Throwable $ex) {
+            $this->exception($log, $ex);
+        }
+    }, function (RequestException $ex) use ($log) {
+        $this->requestException($log, $ex, RequestLogMessageType::ID_XML);
+    });
+} catch (\Throwable $ex) {
+    $this->exception($log, $ex);
 }
 ```
 
@@ -95,7 +131,7 @@ namespace App\Logger;
 // any other use, dopped for brevity
 use Wucdbm\Bundle\WucdbmHttpLoggerBundle\Logger\AbstractLogger;
 
-class BookingLogger extends AbstractLogger {
+class YourRequestLogLogger extends AbstractLogger {
 
     /**
      * @return YourRequestLog
