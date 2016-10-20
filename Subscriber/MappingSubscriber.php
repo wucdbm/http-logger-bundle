@@ -396,12 +396,12 @@ class MappingSubscriber implements EventSubscriber {
         }
 
 //        /**
-//         * @ORM\Column(name="content", type="text", length=4294967295, nullable=false)
+//         * @ORM\Column(name="content", type="text", length=16777215, nullable=false)
 //         */
 //        protected $content;
         if (!$metadata->hasAssociation('content')) {
             $builder = new ClassMetadataBuilder($metadata);
-            $builder->createField('content', 'text')->length(4294967295)->nullable(false)->build();
+            $builder->createField('content', 'text')->length(16777215)->nullable(false)->build();
         }
 
 //        /**
@@ -556,30 +556,30 @@ class MappingSubscriber implements EventSubscriber {
         }
 
 //        /**
-//         * @ORM\Column(name="stack_trace_string", type="text", length=4294967295, nullable=false)
+//         * @ORM\Column(name="stack_trace_string", type="text", length=16777215, nullable=false)
 //         */
 //        protected $stackTraceString;
         if (!$metadata->hasAssociation('stackTraceString')) {
             $builder = new ClassMetadataBuilder($metadata);
-            $builder->createField('stackTraceString', 'text')->length(4294967295)->nullable(false)->build();
+            $builder->createField('stackTraceString', 'text')->length(16777215)->nullable(false)->build();
         }
 
 //        /**
-//         * @ORM\Column(name="json", type="text", length=4294967295, nullable=false)
+//         * @ORM\Column(name="json", type="text", length=16777215, nullable=false)
 //         */
 //        protected $json;
         if (!$metadata->hasAssociation('json')) {
             $builder = new ClassMetadataBuilder($metadata);
-            $builder->createField('json', 'text')->length(4294967295)->nullable(false)->build();
+            $builder->createField('json', 'text')->length(16777215)->nullable(false)->build();
         }
 
 //        /**
-//         * @ORM\Column(name="extra_data", type="text", length=4294967295, nullable=true)
+//         * @ORM\Column(name="extra_data", type="text", length=16777215, nullable=true)
 //         */
 //        protected $extraData;
         if (!$metadata->hasAssociation('extraData')) {
             $builder = new ClassMetadataBuilder($metadata);
-            $builder->createField('extraData', 'text')->length(4294967295)->nullable(true)->build();
+            $builder->createField('extraData', 'text')->length(16777215)->nullable(true)->build();
         }
 
 //        /**
