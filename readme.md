@@ -1,3 +1,7 @@
+# TODO
+
+- Save headers
+
 # Purpose
 
 The purpose of this Bundle is to log HTTP Request/Responses in logs.
