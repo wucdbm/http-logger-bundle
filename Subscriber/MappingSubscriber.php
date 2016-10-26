@@ -81,7 +81,7 @@ class MappingSubscriber implements EventSubscriber {
         }
 
         if ($this->shouldMapRequestLogMessageType($reflectionClass->getName())) {
-            $this->mapRequestLogMessageType($classMetadata, $entityManager);
+            $this->mapRequestLogMessageType($classMetadata);
         }
 
         if ($this->shouldMapRequestLogException($reflectionClass->getName())) {
@@ -147,7 +147,7 @@ class MappingSubscriber implements EventSubscriber {
                 $sequenceName = null;
                 $fieldName = $class->identifier ? $class->getSingleIdentifierFieldName() : null;
 
-                if ($platform instanceof Platforms\PostgreSQLPlatform) {
+                if ($platform instanceof Platforms\PostgreSqlPlatform) {
                     $columnName = $class->getSingleIdentifierColumnName();
                     $quoted = isset($class->fieldMappings[$fieldName]['quoted']) || isset($class->table['quoted']);
                     $sequenceName = $class->getTableName() . '_' . $columnName . '_seq';
@@ -288,6 +288,15 @@ class MappingSubscriber implements EventSubscriber {
         if (!$metadata->hasAssociation('method')) {
             $builder = new ClassMetadataBuilder($metadata);
             $builder->createField('method', 'string')->nullable(true)->build();
+        }
+
+//        /**
+//         * @ORM\Column(name="headers", type="array", nullable=false)
+//         */
+//        protected $headers;
+        if (!$metadata->hasAssociation('headers')) {
+            $builder = new ClassMetadataBuilder($metadata);
+            $builder->createField('headers', 'array')->nullable(false)->build();
         }
 
 //        /**
@@ -461,7 +470,7 @@ class MappingSubscriber implements EventSubscriber {
         }
     }
 
-    protected function mapRequestLogMessageType(ClassMetadata $metadata, EntityManager $em) {
+    protected function mapRequestLogMessageType(ClassMetadata $metadata) {
         $reflection = $metadata->getReflectionClass();
         $config = $this->getConfigForClass($reflection->getName());
 

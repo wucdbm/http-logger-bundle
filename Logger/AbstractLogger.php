@@ -139,6 +139,7 @@ abstract class AbstractLogger {
 
         $log->setUrl($request->getUri());
         $log->setMethod($request->getMethod());
+        $log->setHeaders($request->getHeaders());
     }
 
     /**
@@ -226,6 +227,7 @@ abstract class AbstractLogger {
 
     protected function getExceptionData(\Throwable $e) {
         return [
+            'class'    => get_class($e),
             'message'  => $e->getMessage(),
             'code'     => $e->getCode(),
             'file'     => $e->getFile(),

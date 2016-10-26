@@ -18,6 +18,9 @@ class RequestLog {
     /** @var string */
     protected $method;
 
+    /** @var array */
+    protected $headers = [];
+
     /** @var \DateTime */
     protected $date;
 
@@ -179,6 +182,20 @@ class RequestLog {
      */
     public function setException($exception) {
         $this->exception = $exception;
+    }
+
+    /**
+     * @return array
+     */
+    public function getHeaders(): array {
+        return $this->headers;
+    }
+
+    /**
+     * @param array $headers
+     */
+    public function setHeaders(array $headers) {
+        $this->headers = $headers;
     }
 
     public function __construct() {
