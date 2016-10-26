@@ -6,6 +6,16 @@ use Wucdbm\Bundle\WucdbmHttpLoggerBundle\Entity\RequestLog;
 
 class RequestLogRepository extends \Doctrine\ORM\EntityRepository {
 
+    public function getQueryBuilder() {
+        return $this->createQueryBuilder('l')
+            ->addSelect('req, reqType, res, resType, e')
+            ->leftJoin('l.request', 'req')
+            ->leftJoin('req.type', 'reqType')
+            ->leftJoin('l.response', 'res')
+            ->leftJoin('res.type', 'resType')
+            ->leftJoin('l.exception', 'e');
+    }
+
     public function save(RequestLog $log) {
         $em = $this->getEntityManager();
         $conn = $em->getConnection();

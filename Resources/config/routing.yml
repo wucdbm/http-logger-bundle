@@ -1,0 +1,7 @@
+wucdbm_logger_bundle_message_view:
+    path:      /{id}/view/{class}
+    defaults:  { _controller: WucdbmHttpLoggerBundle:Message:view }
+
+wucdbm_logger_bundle_message_view_raw:
+    path:      /{id}/view-raw/{class}
+    defaults:  { _controller: WucdbmHttpLoggerBundle:Message:viewRaw }
