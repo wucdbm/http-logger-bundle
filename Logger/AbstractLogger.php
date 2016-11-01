@@ -233,9 +233,25 @@ abstract class AbstractLogger {
             'code'     => $e->getCode(),
             'file'     => $e->getFile(),
             'line'     => $e->getLine(),
-            'trace'    => $e->getTrace(),
+            'trace'    => $this->getNormalizedTrace($e->getTrace()),
             'previous' => $e->getPrevious() ? $this->getExceptionData($e->getPrevious()) : null
         ];
+    }
+
+    protected function getNormalizedTrace(array $trace) {
+        $ret = [];
+
+        foreach ($trace as $row) {
+            $ret[] = [
+                'file'     => isset($row['file']) ? $row['file'] : '',
+                'line'     => isset($row['line']) ? $row['line'] : '',
+                'class'    => isset($row['class']) ? $row['class'] : '',
+                'function' => isset($row['function']) ? $row['function'] : '',
+                'type'     => isset($row['type']) ? $row['type'] : ''
+            ];
+        }
+
+        return $ret;
     }
 
     public function __construct() {
