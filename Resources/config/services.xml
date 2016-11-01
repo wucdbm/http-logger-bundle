@@ -4,12 +4,16 @@
 
     <parameters>
         <parameter key="wucdbm_http_logger.doctrine_mapping_subscriber.class">Wucdbm\Bundle\WucdbmHttpLoggerBundle\Subscriber\MappingSubscriber</parameter>
+        <parameter key="wucdbm_http_logger.twig.log_extension.class">Wucdbm\Bundle\WucdbmHttpLoggerBundle\Twig\LogExtension</parameter>
     </parameters>
 
     <services>
         <service id="wucdbm_http_logger.doctrine_mapping_subscriber" class="%wucdbm_http_logger.doctrine_mapping_subscriber.class%">
             <argument>%wucdbm_http_logger.configs%</argument>
             <tag name="doctrine.event_subscriber"/>
+        </service>
+        <service id="wucdbm_http_logger.twig.log_extension" class="%wucdbm_http_logger.twig.log_extension.class%">
+            <tag name="twig.extension"/>
         </service>
     </services>
 
