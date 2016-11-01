@@ -37,9 +37,7 @@ class LogExtension extends \Twig_Extension {
             $pieces[] = sprintf('-d "%s"', str_replace('"', '\"', $request->getContent()));
         }
 
-        $pieces[] = $log->getUrl();
-
-        $command = sprintf('curl %s', implode(' ', $pieces));
+        $command = sprintf('curl %s %s', $log->getUrl(), implode(' ', $pieces));
 
         return $command;
     }
