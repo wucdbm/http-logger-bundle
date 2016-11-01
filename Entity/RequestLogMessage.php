@@ -11,6 +11,9 @@ class RequestLogMessage {
     /** @var string */
     protected $content;
 
+    /** @var array */
+    protected $headers = [];
+
     /** @var RequestLog */
     protected $requestTo;
 
@@ -105,6 +108,20 @@ class RequestLogMessage {
      */
     public function setDate(\DateTime $date) {
         $this->date = $date;
+    }
+
+    /**
+     * @return array
+     */
+    public function getHeaders(): array {
+        return $this->headers;
+    }
+
+    /**
+     * @param array $headers
+     */
+    public function setHeaders(array $headers) {
+        $this->headers = $headers;
     }
 
     public function __construct() {

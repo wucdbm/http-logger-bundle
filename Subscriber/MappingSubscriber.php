@@ -291,15 +291,6 @@ class MappingSubscriber implements EventSubscriber {
         }
 
 //        /**
-//         * @ORM\Column(name="headers", type="array", nullable=false)
-//         */
-//        protected $headers;
-        if (!$metadata->hasAssociation('headers')) {
-            $builder = new ClassMetadataBuilder($metadata);
-            $builder->createField('headers', 'array')->nullable(false)->build();
-        }
-
-//        /**
 //         * @ORM\Column(name="date", type="datetime", nullable=false)
 //         */
 //        protected $date;
@@ -402,6 +393,15 @@ class MappingSubscriber implements EventSubscriber {
 //        protected $id;
         if (!$metadata->hasAssociation('id')) {
             $this->mapId($metadata, $em);
+        }
+
+//        /**
+//         * @ORM\Column(name="headers", type="array", nullable=false)
+//         */
+//        protected $headers;
+        if (!$metadata->hasAssociation('headers')) {
+            $builder = new ClassMetadataBuilder($metadata);
+            $builder->createField('headers', 'array')->nullable(false)->build();
         }
 
 //        /**

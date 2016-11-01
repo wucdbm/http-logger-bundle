@@ -133,13 +133,13 @@ abstract class AbstractLogger {
 
         $message = $this->createLogMessage();
         $message->setContent($content);
+        $message->setHeaders($request->getHeaders());
         $message->setType($messageType);
 
         $log->setRequest($message);
 
         $log->setUrl($request->getUri());
         $log->setMethod($request->getMethod());
-        $log->setHeaders($request->getHeaders());
     }
 
     /**
@@ -172,6 +172,7 @@ abstract class AbstractLogger {
         $messageType = $this->getLogMessageType($messageType);
         $message = $this->createLogMessage();
         $message->setContent($content);
+        $message->setHeaders($response->getHeaders());
         $message->setType($messageType);
 
         $log->setResponse($message);
