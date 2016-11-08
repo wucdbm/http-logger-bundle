@@ -48,7 +48,7 @@ class RequestLogRepository extends \Doctrine\ORM\EntityRepository {
         }
     }
 
-    protected function persistAdditionalFields(RequestLog $log) {
+    protected function persistAdditionalFields($log) {
         //
     }
 
