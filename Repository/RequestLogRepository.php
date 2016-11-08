@@ -34,7 +34,7 @@ class RequestLogRepository extends \Doctrine\ORM\EntityRepository {
                 $em->persist($exception);
             }
 
-            $this->persistAdditionalFields();
+            $this->persistAdditionalFields($log);
 
             $em->persist($log);
             $em->flush();
@@ -48,7 +48,7 @@ class RequestLogRepository extends \Doctrine\ORM\EntityRepository {
         }
     }
 
-    protected function persistAdditionalFields() {
+    protected function persistAdditionalFields(RequestLog $log) {
         //
     }
 
