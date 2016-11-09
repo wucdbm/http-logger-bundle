@@ -1,3 +1,6 @@
+# TODO
+- This doesn't play very nice with GuzzleHttp form_params (passing an array, instead of body as http_build_query) and cookies (using a cookie jar)
+
 # Purpose
 
 The purpose of this Bundle is to log HTTP Request/Responses in logs.
