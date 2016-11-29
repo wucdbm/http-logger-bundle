@@ -271,7 +271,7 @@ class MappingSubscriber implements EventSubscriber {
 //         */
 //        protected $statusCode;
         if (!$metadata->hasAssociation('statusCode')) {
-            $builder->createField('statusCode', 'smallint')->nullable(true)->option('unsigned', true)->build();
+            $builder->createField('statusCode', 'smallint')->columnName('status_code')->nullable(true)->option('unsigned', true)->build();
         }
 
 //        /**
@@ -287,8 +287,8 @@ class MappingSubscriber implements EventSubscriber {
 //         */
 //        protected $urlHash;
         if (!$metadata->hasAssociation('urlHash')) {
-            $builder->createField('urlHash', 'string')->length(32)->option('fixed', true)->nullable(true)->build();
-            $builder->addIndex(['urlHash'], 'urlHash');
+            $builder->createField('urlHash', 'string')->columnName('url_hash')->length(32)->option('fixed', true)->nullable(true)->build();
+            $builder->addIndex(['url_hash'], 'url_hash');
         }
 
 //        /**
@@ -588,7 +588,7 @@ class MappingSubscriber implements EventSubscriber {
 //         */
 //        protected $stackTraceString;
         if (!$metadata->hasAssociation('stackTraceString')) {
-            $builder->createField('stackTraceString', 'text')->length(16777215)->nullable(false)->build();
+            $builder->createField('stackTraceString', 'text')->columnName('stack_trace_string')->length(16777215)->nullable(false)->build();
         }
 
 //        /**
@@ -604,7 +604,7 @@ class MappingSubscriber implements EventSubscriber {
 //         */
 //        protected $extraData;
         if (!$metadata->hasAssociation('extraData')) {
-            $builder->createField('extraData', 'text')->length(16777215)->nullable(true)->build();
+            $builder->createField('extraData', 'text')->columnName('extra_data')->length(16777215)->nullable(true)->build();
         }
 
 //        /**
