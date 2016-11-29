@@ -138,7 +138,11 @@ abstract class AbstractLogger {
 
         $log->setRequest($message);
 
-        $log->setUrl($request->getUri());
+        if ($url = $request->getUri()) {
+            $log->setUrl($url);
+            $log->setUrlHash(md5($url));
+        }
+
         $log->setMethod($request->getMethod());
     }
 

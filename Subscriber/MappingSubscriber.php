@@ -17,9 +17,10 @@ use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\ORMException;
 
 /**
- * Translatable Doctrine2 subscriber.
- *
- * Provides mapping for translatable entities and their translations.
+ * A TranslatableSubscriber ripoff (from DoctrineBehaviours)
+ * A copy of the base file can be found in this project and used as a reference
+ * Class MappingSubscriber
+ * @package Wucdbm\Bundle\WucdbmHttpLoggerBundle\Subscriber
  */
 class MappingSubscriber implements EventSubscriber {
 
@@ -278,7 +279,17 @@ class MappingSubscriber implements EventSubscriber {
 //        protected $url;
         if (!$metadata->hasAssociation('url')) {
             $builder = new ClassMetadataBuilder($metadata);
-            $builder->createField('url', 'text')->nullable(true)->build();
+            $builder->createField('url', 'text')->length(65535)->nullable(true)->build();
+        }
+
+//        /**
+//         * @ORM\Column(name="url_hash", type="string", nullable=true)
+//         */
+//        protected $urlHash;
+        if (!$metadata->hasAssociation('url')) {
+            $builder = new ClassMetadataBuilder($metadata);
+            $builder->createField('urlHash', 'string')->length(32)->option('fixed', true)->nullable(true)->build();
+            $builder->addIndex(['urlHash'], 'urlHash');
         }
 
 //        /**

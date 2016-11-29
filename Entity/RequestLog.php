@@ -12,8 +12,11 @@ class RequestLog {
     /** @var integer */
     protected $statusCode;
 
-    /** @var string */
+    /** @var string|null */
     protected $url;
+
+    /** @var string|null */
+    protected $urlHash;
 
     /** @var string */
     protected $method;
@@ -179,6 +182,20 @@ class RequestLog {
      */
     public function setException($exception) {
         $this->exception = $exception;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrlHash() {
+        return $this->urlHash;
+    }
+
+    /**
+     * @param string $urlHash
+     */
+    public function setUrlHash(string $urlHash) {
+        $this->urlHash = $urlHash;
     }
 
     public function __construct() {
