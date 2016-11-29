@@ -135,6 +135,7 @@ abstract class AbstractLogger {
         $message->setContent($content);
         $message->setHeaders($request->getHeaders());
         $message->setType($messageType);
+        $message->setRequestTo($log);
 
         $log->setRequest($message);
 
@@ -178,6 +179,7 @@ abstract class AbstractLogger {
         $message->setContent($content);
         $message->setHeaders($response->getHeaders());
         $message->setType($messageType);
+        $message->setResponseTo($log);
 
         $log->setResponse($message);
 
