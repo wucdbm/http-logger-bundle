@@ -392,11 +392,11 @@ class MappingSubscriber implements EventSubscriber {
         }
 
 //        /**
-//         * @ORM\Column(name="content", type="text", length=16777215, nullable=false)
+//         * @ORM\Column(name="content", type="text", length=4294967295, nullable=false)
 //         */
 //        protected $content;
         if (!$metadata->hasAssociation('content')) {
-            $builder->createField('content', 'text')->length(16777215)->nullable(false)->build();
+            $builder->createField('content', 'text')->length(4294967295)->nullable(false)->build();
         }
 
 //        /**
