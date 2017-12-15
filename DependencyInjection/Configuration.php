@@ -1,6 +1,6 @@
 <?php
 
-namespace Wucdbm\Bundle\GalleryBundle\DependencyInjection;
+namespace Wucdbm\Bundle\WucdbmHttpLoggerBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
